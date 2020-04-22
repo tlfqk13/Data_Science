@@ -1,9 +1,10 @@
 from typing import List
 from typing import Tuple
 from typing import Callable
+from collections import Counter
 
-Vector=List[float]
-
+Vector = List[float]
+'''
 def subtract(v:Vector,w:Vector)->Vector:
 
  assert len(v)==len(w)
@@ -46,3 +47,26 @@ print(A1)
 def vector_sum(vectors: List[Vector])-> Vector:
    return[sum(int(i) for i,j in vectors), sum(int(j) for i,j in vectors)]
 print((vector_sum([[1, 2], [3, 4], [5, 6], [7, 8]])))
+'''
+
+
+def median(v: List[float])->float:
+   s=sorted(v)
+   m = s[len(s)//2] if len(v)%2==1 else (s[len(s)//2]+s[len(s)//2-1])/2
+   return m
+
+
+assert median([1,10,2,9,5])==5
+assert median([1,9,2,10])==(2+9)/2
+
+
+num_friends=[1,2,3,4,5,6,7,8,1,1,6,6]
+def mode(x: List[float])->List[float]:
+    counts=Counter(num_friends)
+    n = max(counts.values())
+    res=[i for i,c in counts.items() if c == n]
+    return res
+
+
+assert set(mode(num_friends)) == {1, 6}
+print(mode(num_friends))
